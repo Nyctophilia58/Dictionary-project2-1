@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+    int test,samp,n,rem,length,min;
+    scanf("%d",&test);
+    while(test--)
+    {
+        length=0;
+        scanf("%d",&n);
+        samp=n;
+        while(samp!=0)
+        {
+            rem=samp%10;
+            samp=samp/10;
+            length++;
+        }
+        samp=n;
+        rem=0;
+        if(length==2)
+        {
+            printf("%d\n",n%10);
+        }
+        else
+        {
+            min=10;
+            while(samp!=0)
+            {
+                rem=samp%10;
+                samp=samp/10;
+                if(min>rem)
+                {
+                    min=rem;
+                }
+            }
+            printf("%d\n",min);
+        }
+    }
+    return 0;
+}
