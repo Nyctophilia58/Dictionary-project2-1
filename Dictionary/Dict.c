@@ -6,6 +6,7 @@
 
 
 int prefer;
+char choice2;
 int welcome_to_app();
 int preferred_dict();
 void menu_choice();
@@ -16,7 +17,7 @@ char search_word(char line[], int z);
 int main()
 {
     char word[100], meaning[100], search[100];
-    int choice, choice2;
+    int choice;
     char key;
     welcome_to_app();
     prefer = preferred_dict();
@@ -37,11 +38,21 @@ int main()
                 break;
 
             case 2:
-                printf("\nEnter the word you want to search: ");
-                scanf(" %[^\n]", &search);
-                printf("You entered: %s\n\n", search);
-                search_word(search, prefer);
-                sleep(1);
+                while(1)
+                {
+                    printf("\nEnter the word you want to search: ");
+                    scanf(" %[^\n]", &search);
+                    printf("You entered: %s\n\n", search);
+                    choice2 = search_word(search, prefer);
+                    if(choice2 == 'y')
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
                 printf("\n");
                 menu_choice();
                 break;
@@ -52,12 +63,20 @@ int main()
                 exit(0);
 
             default :
-                printf("\nWrong choice!!!\n");
-                printf("To return to the main menu press E: ");
-                scanf(" %c",&key);
-                if(key=='E')
+                while(1)
                 {
-                    system("clear");
+                    printf("Wrong choice!!!\n");
+                    printf("To return to the main menu press E: ");
+                    scanf(" %c",&key);
+                    if(key=='E')
+                    {
+                        system("clear");
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
         }
     }
@@ -73,30 +92,39 @@ int welcome_to_app()
 }
 
 
+
 int preferred_dict()
 {
     printf("\n Which dictionary would you prefer? \n\n");
     printf("\t 1. Bangla to English\n\n");
     printf("\t 2. English to Bangla\n\n");
-    printf("Enter your choice: ");
-    scanf("%d",&prefer);
-    printf("\n");
-    if(prefer == 1)
+    while(1)
     {
-        sleep(1);
-        system("clear");
-        printf("\n\t----------------------------\n");
-        printf("\tBANGLA TO ENGLISH DICTIONARY\n");
-        printf("\t----------------------------\n");
+        printf("Enter your choice: ");
+        scanf("%d",&prefer);
+        printf("\n");
+        switch(prefer)
+        {
+            case 1:
+                sleep(1);
+                system("clear");
+                printf("\n\t----------------------------\n");
+                printf("\tBANGLA TO ENGLISH DICTIONARY\n");
+                printf("\t----------------------------\n");
+                break;
+            case 2:
+                sleep(1);
+                system("clear");
+                printf("\n\t----------------------------\n");
+                printf("\tENGLISH TO BANGLA DICTIONARY\n");
+                printf("\t----------------------------\n");
+                break;
+            default:
+                printf("Wrong choice!!! Try again.\n");
+        }
     }
-    else
-    {
-        sleep(1);
-        system("clear");
-        printf("\n\t----------------------------\n");
-        printf("\tENGLISH TO BANGLA DICTIONARY\n");
-        printf("\t----------------------------\n");
-    }
+    sleep(2);
+    system("clear");
     return prefer;
 }
 
@@ -131,8 +159,8 @@ void menu_choice()
         }
         else
         {
-            printf("\nWrong choice!!! Try again.");
-            sleep(1);
+            printf("\nWrong choice!!! Try again.\n");
+            sleep(2);
             system("clear");
             continue;
         }
@@ -221,4 +249,9 @@ char search_word(char line[], int z)
         printf("Word not found!!\n");
     }
     fclose(file_ptr);
+    printf("\nWanna search more words? (y/n) ");
+    scanf(" %c",&choice2);
+    sleep(1);
+    system("clear");
+    return choice2;
 }
