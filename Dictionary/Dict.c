@@ -17,6 +17,7 @@ char search_word(char line[], int z);
 
 int main()
 {
+
     char word[100], meaning[100], search[100];
     int choice;
     char key;
