@@ -189,10 +189,10 @@ char add_word(char x[],char y[], int z)
     {
         file_ptr = fopen("English_words.txt", "a");
     }
-    printf("\nEnter your word: ");
+    printf("\nEnter the word you want to add: ");
     while(scanf("%s",a)!=EOF)
     {
-        printf("Enter meaning: ");
+        printf("Enter the meaning of the word: ");
         scanf("%s", b);
         fprintf(file_ptr,"%s = %s\n", a, b);
         printf("The word shall be like --> %s = %s\n", a, b);
@@ -200,7 +200,7 @@ char add_word(char x[],char y[], int z)
         scanf(" %c",&choice);
         if(choice == 'y')
         {
-            printf("\nEnter your word: ");
+            printf("\nEnter the word you want to add: ");
             continue;
         }
         else

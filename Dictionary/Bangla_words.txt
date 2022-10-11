@@ -6699,3 +6699,4 @@
 হোস্টেল = Hostel
 হ্রদ = Lake
 হ্রাস = Decrease
+ক্ষতিকর = injurious
